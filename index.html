@@ -1,0 +1,54 @@
+<div id="product-container" class="pw-grid-container">
+    </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+
+<script>
+    const SHEET_URL = 'PASTE_YOUR_PUBLISHED_CSV_LINK_HERE';
+
+    function loadProducts() {
+        Papa.parse(SHEET_URL, {
+            download: true,
+            header: true,
+            complete: function(results) {
+                const container = document.getElementById('product-container');
+                const data = results.data;
+
+                data.forEach(product => {
+                    // Safety check to ensure the row isn't empty
+                    if (!product['Product Name']) return;
+
+                    const card = `
+                        <div class="pw-card">
+                            <div class="pw-badge">PickWorthy Choice</div>
+                            <div class="pw-header">
+                                <span class="pw-brand">${product['Brand']}</span>
+                                <h2 class="pw-product-name">${product['Product Name']}</h2>
+                            </div>
+                            <div class="pw-key-feature">
+                                <strong>Key Feature:</strong> ${product['Key Feature']}
+                            </div>
+                            <div class="pw-description-box">
+                                <p><strong>Why it's PickWorthy:</strong> ${product["Why it's PickWorthy"]}</p>
+                            </div>
+                            <div class="pw-specs">
+                                <p class="pw-specs-label">Important Features:</p>
+                                <p class="pw-tag">${product['Important Features']}</p>
+                            </div>
+                            <div class="pw-footer">
+                                <div class="pw-price-area">
+                                    <span class="pw-price-label">Approx Price</span>
+                                    <span class="pw-price-value">${product['Price (INR approx)']}</span>
+                                </div>
+                                <a href="${product['Affiliate Link']}" class="pw-cta-button" target="_blank">Check on Amazon</a>
+                            </div>
+                        </div>
+                    `;
+                    container.innerHTML += card;
+                });
+            }
+        });
+    }
+
+    loadProducts();
+</script>
