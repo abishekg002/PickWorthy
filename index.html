@@ -3,223 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PickWorthy | Handpicked Budget Action Cameras</title>
+    <title>PickWorthy | Discover Handpicked Products</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --pw-orange: #FF9900;
-            --pw-dark: #131921;
-            --pw-blue: #007185;
-            --pw-bg: #F7F8FA;
-            --pw-card-bg: #FFFFFF;
-            --pw-text-main: #232F3E;
-            --pw-text-light: #565959;
-            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
-            --shadow-md: 0 10px 30px rgba(0,0,0,0.08);
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --accent: #FF9900;
+            --text-glow: 0 0 15px rgba(255, 153, 0, 0.4);
         }
 
         body {
+            background: radial-gradient(circle at top right, #1a2a6c, #b21f1f, #fdbb2d); /* Dynamic sunset gradient */
+            background-attachment: fixed;
+            color: #fff;
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--pw-bg);
             margin: 0;
             padding: 0;
-            color: var(--pw-text-main);
-            line-height: 1.6;
+            min-height: 100vh;
         }
 
-        /* Hero Header Section */
+        /* Modern Glass Header */
         header {
-            background: linear-gradient(135deg, #131921 0%, #232f3e 100%);
-            color: white;
-            padding: 80px 20px;
+            padding: 100px 20px 60px;
             text-align: center;
-            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-            margin-bottom: 60px;
+            backdrop-filter: blur(5px);
         }
 
         header h1 {
-            font-family: 'Outfit', sans-serif;
+            font-size: 4rem;
             font-weight: 800;
-            font-size: 3.5rem;
             margin: 0;
-            letter-spacing: -1px;
+            letter-spacing: -2px;
+            text-shadow: var(--text-glow);
         }
 
-        header h1 span { color: var(--pw-orange); }
+        header h1 span { color: var(--accent); }
 
-        header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            max-width: 600px;
-            margin: 15px auto 0;
-            font-weight: 300;
+        .search-container {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
         }
 
-        /* Grid Layout */
+        #searchInput {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--glass-border);
+            padding: 15px 30px;
+            border-radius: 50px;
+            width: 300px;
+            color: white;
+            font-size: 1rem;
+            backdrop-filter: blur(10px);
+            transition: width 0.4s ease;
+        }
+
+        #searchInput:focus { width: 450px; outline: none; border-color: var(--accent); }
+
+        /* Glassmorphism Bento Grid */
         .pw-grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 35px;
-            max-width: 1250px;
-            margin: 0 auto;
+            gap: 25px;
+            max-width: 1300px;
+            margin: 40px auto;
             padding: 0 20px 100px;
         }
 
-        /* Product Card Styling */
         .pw-card {
-            background: var(--pw-card-bg);
-            border-radius: 24px;
-            padding: 35px;
-            position: relative;
-            border: 1px solid rgba(0,0,0,0.03);
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            padding: 30px;
             display: flex;
             flex-direction: column;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: var(--shadow-sm);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
         }
 
         .pw-card:hover {
-            transform: translateY(-12px);
-            box-shadow: var(--shadow-md);
+            transform: translateY(-10px) scale(1.02);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
         }
 
-        /* "PickWorthy Choice" Badge */
-        .pw-badge {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: var(--pw-orange);
-            color: #000;
-            font-size: 10px;
-            font-weight: 800;
-            padding: 6px 14px;
-            border-radius: 30px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .pw-brand {
-            color: var(--pw-blue);
-            font-size: 13px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .pw-product-name {
-            margin: 0 0 15px 0;
-            font-size: 1.7rem;
-            font-family: 'Outfit', sans-serif;
-            font-weight: 700;
-            line-height: 1.2;
-        }
-
-        .pw-key-feature {
-            background: #e7f3f5;
-            color: #007185;
-            padding: 12px 18px;
-            border-radius: 14px;
-            font-size: 0.95rem;
-            margin-bottom: 25px;
-            font-weight: 600;
-            border: 1px solid rgba(0, 113, 133, 0.1);
-        }
-
-        /* "Why it's PickWorthy" Box */
-        .pw-description-box {
-            background: #FFFBF0;
-            border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 25px;
-            position: relative;
-        }
-
-        .pw-description-box h4 {
-            margin: 0 0 8px 0;
-            font-size: 12px;
-            color: #856404;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .pw-description-box p {
-            margin: 0;
-            font-size: 0.95rem;
-            color: #444;
-            font-style: italic;
-        }
-
-        /* Tag Styling */
-        .pw-specs-label { font-size: 11px; font-weight: 700; color: #999; text-transform: uppercase; margin-bottom: 12px; }
+        .pw-brand { color: var(--accent); font-weight: 800; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; }
+        .pw-product-name { font-size: 1.8rem; margin: 10px 0; font-weight: 800; }
         
-        .pw-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 30px; }
-        .pw-tag { 
-            background: #F0F2F2; 
-            color: var(--pw-text-light); 
-            font-size: 11px; 
-            padding: 6px 12px; 
-            border-radius: 8px; 
-            font-weight: 600;
-            border: 1px solid #D5D9D9;
+        .pw-key-feature {
+            background: #2ecc71; /* High visibility green */
+            color: #000;
+            padding: 5px 15px;
+            border-radius: 8px;
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 800;
+            margin-bottom: 20px;
         }
 
-        /* Footer & Price */
+        .pw-description-box {
+            border-left: 2px solid var(--accent);
+            padding-left: 15px;
+            margin: 20px 0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .pw-tag {
+            background: rgba(255,255,255,0.05);
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            margin: 0 5px 5px 0;
+            display: inline-block;
+            border: 1px solid var(--glass-border);
+        }
+
+        /* Vibrant CTA Button */
         .pw-footer {
             margin-top: auto;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-top: 1px solid #f0f0f0;
-            padding-top: 25px;
+            padding-top: 20px;
         }
 
-        .pw-price-label { font-size: 11px; color: #777; display: block; }
-        .pw-price-value { font-size: 1.6rem; font-weight: 800; color: #B12704; }
+        .pw-price-value { font-size: 1.5rem; font-weight: 800; }
 
         .pw-cta-button {
-            background-color: var(--pw-orange);
+            background: linear-gradient(90deg, #FF9900, #FFCC00);
             color: #000;
             text-decoration: none;
-            padding: 14px 24px;
-            border-radius: 100px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 14px rgba(255, 153, 0, 0.3);
+            padding: 15px 30px;
+            border-radius: 15px;
+            font-weight: 800;
+            box-shadow: 0 10px 20px rgba(255, 153, 0, 0.3);
+            transition: 0.3s;
         }
 
-        .pw-cta-button:hover {
-            background-color: #F7CA00;
-            transform: scale(1.05);
-        }
-
-        /* Loading Animation */
-        #loader { text-align: center; font-weight: 600; color: #777; padding: 50px; }
-
-        @media (max-width: 600px) {
-            header h1 { font-size: 2.5rem; }
-            .pw-grid-container { grid-template-columns: 1fr; }
-        }
+        .pw-cta-button:hover { transform: rotate(-2deg); box-shadow: 0 15px 30px rgba(255, 153, 0, 0.5); }
     </style>
 </head>
 <body>
 
     <header>
         <h1>Pick<span>Worthy</span></h1>
-        <p>We research the best gadgets so you don't have to. Handpicked quality from brands you trust.</p>
+        <p>Expertly handpicked budget action cameras for your next adventure.</p>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search by brand or feature..." onkeyup="filterCards()">
+        </div>
     </header>
 
-    <div id="loader">Discovering the best picks for you...</div>
     <div id="product-container" class="pw-grid-container"></div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
-    
     <script>
-        // REPLACE THIS with your Published Google Sheet CSV Link
         const SHEET_URL = 'YOUR_PUBLISHED_CSV_LINK_HERE';
 
         function loadProducts() {
@@ -227,45 +171,37 @@
                 download: true,
                 header: true,
                 complete: function(results) {
-                    document.getElementById('loader').style.display = 'none';
                     const container = document.getElementById('product-container');
-                    
                     results.data.forEach(product => {
                         if (!product['Product Name']) return;
-
-                        // Create clean tags from comma-separated string
-                        const specs = product['Important Features'].split(',').map(s => 
-                            `<span class="pw-tag">${s.trim()}</span>`
-                        ).join('');
-
+                        const specs = product['Important Features'].split(',').map(s => `<span class="pw-tag">${s.trim()}</span>`).join('');
+                        
                         container.innerHTML += `
                             <div class="pw-card">
-                                <div class="pw-badge">Top Selection</div>
-                                <div class="pw-header">
-                                    <span class="pw-brand">${product['Brand']}</span>
-                                    <h2 class="pw-product-name">${product['Product Name']}</h2>
-                                </div>
-                                <div class="pw-key-feature">★ ${product['Key Feature']}</div>
+                                <span class="pw-brand">${product['Brand']}</span>
+                                <h2 class="pw-product-name">${product['Product Name']}</h2>
+                                <div class="pw-key-feature">${product['Key Feature']}</div>
                                 <div class="pw-description-box">
-                                    <h4>Why it's PickWorthy</h4>
                                     <p>${product["Why it's PickWorthy"]}</p>
                                 </div>
-                                <div class="pw-specs">
-                                    <p class="pw-specs-label">Key Specifications</p>
-                                    <div class="pw-tags">${specs}</div>
-                                </div>
+                                <div class="pw-tags">${specs}</div>
                                 <div class="pw-footer">
-                                    <div>
-                                        <span class="pw-price-label">Check Price</span>
-                                        <span class="pw-price-value">${product['Price (INR approx)']}</span>
-                                    </div>
-                                    <a href="${product['Affiliate Link']}" class="pw-cta-button" target="_blank">View on Amazon</a>
+                                    <span class="pw-price-value">${product['Price (INR approx)']}</span>
+                                    <a href="${product['Affiliate Link']}" class="pw-cta-button" target="_blank">Check on Amazon</a>
                                 </div>
                             </div>
                         `;
                     });
                 }
             });
+        }
+
+        function filterCards() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let cards = document.getElementsByClassName('pw-card');
+            for (let card of cards) {
+                card.style.display = card.innerText.toLowerCase().includes(input) ? "" : "none";
+            }
         }
         window.onload = loadProducts;
     </script>
