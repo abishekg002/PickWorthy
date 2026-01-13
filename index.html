@@ -3,179 +3,262 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PickWorthy | Best Budget Action Cameras</title>
+    <title>PickWorthy | Handpicked Budget Action Cameras</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary-color: #007bff;
-            --accent-color: #ffcc00;
-            --dark-bg: #232f3e;
-            --text-main: #1a1a1a;
-            --text-muted: #666;
+            --pw-orange: #FF9900;
+            --pw-dark: #131921;
+            --pw-blue: #007185;
+            --pw-bg: #F7F8FA;
+            --pw-card-bg: #FFFFFF;
+            --pw-text-main: #232F3E;
+            --pw-text-light: #565959;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+            --shadow-md: 0 10px 30px rgba(0,0,0,0.08);
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8f9fa;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--pw-bg);
             margin: 0;
-            padding: 40px 20px;
-            color: var(--text-main);
+            padding: 0;
+            color: var(--pw-text-main);
+            line-height: 1.6;
         }
 
+        /* Hero Header Section */
         header {
+            background: linear-gradient(135deg, #131921 0%, #232f3e 100%);
+            color: white;
+            padding: 80px 20px;
             text-align: center;
-            margin-bottom: 50px;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+            margin-bottom: 60px;
         }
 
-        header h1 { font-weight: 800; font-size: 2.5rem; margin-bottom: 10px; }
-        header p { color: var(--text-muted); font-size: 1.1rem; }
+        header h1 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 3.5rem;
+            margin: 0;
+            letter-spacing: -1px;
+        }
 
+        header h1 span { color: var(--pw-orange); }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 15px auto 0;
+            font-weight: 300;
+        }
+
+        /* Grid Layout */
         .pw-grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 35px;
+            max-width: 1250px;
             margin: 0 auto;
+            padding: 0 20px 100px;
         }
 
+        /* Product Card Styling */
         .pw-card {
-            background: #fff;
-            border-radius: 20px;
-            padding: 30px;
+            background: var(--pw-card-bg);
+            border-radius: 24px;
+            padding: 35px;
             position: relative;
-            border: 1px solid #eaeaea;
+            border: 1px solid rgba(0,0,0,0.03);
             display: flex;
             flex-direction: column;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: var(--shadow-sm);
         }
 
         .pw-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transform: translateY(-12px);
+            box-shadow: var(--shadow-md);
         }
 
+        /* "PickWorthy Choice" Badge */
         .pw-badge {
             position: absolute;
-            top: -12px;
-            right: 25px;
-            background: var(--accent-color);
+            top: 20px;
+            right: 20px;
+            background: var(--pw-orange);
             color: #000;
-            font-size: 0.7rem;
+            font-size: 10px;
             font-weight: 800;
-            padding: 5px 15px;
-            border-radius: 50px;
+            padding: 6px 14px;
+            border-radius: 30px;
             text-transform: uppercase;
-            box-shadow: 0 4px 10px rgba(255, 204, 0, 0.3);
-        }
-
-        .pw-brand {
-            color: var(--primary-color);
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            font-weight: 700;
             letter-spacing: 1px;
         }
 
-        .pw-product-name { margin: 8px 0 15px 0; font-size: 1.5rem; }
+        .pw-brand {
+            color: var(--pw-blue);
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .pw-product-name {
+            margin: 0 0 15px 0;
+            font-size: 1.7rem;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
 
         .pw-key-feature {
-            background: #f0f7ff;
-            color: #0056b3;
-            padding: 10px 15px;
-            border-radius: 10px;
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-
-        .pw-description-box {
-            background: #fffdf5;
-            border-left: 4px solid var(--accent-color);
-            padding: 15px;
-            margin-bottom: 20px;
+            background: #e7f3f5;
+            color: #007185;
+            padding: 12px 18px;
+            border-radius: 14px;
             font-size: 0.95rem;
-            line-height: 1.6;
-            color: #444;
+            margin-bottom: 25px;
+            font-weight: 600;
+            border: 1px solid rgba(0, 113, 133, 0.1);
         }
 
-        .pw-specs-label { font-size: 0.75rem; font-weight: 800; color: #aaa; text-transform: uppercase; margin-bottom: 10px; }
+        /* "Why it's PickWorthy" Box */
+        .pw-description-box {
+            background: #FFFBF0;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .pw-description-box h4 {
+            margin: 0 0 8px 0;
+            font-size: 12px;
+            color: #856404;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .pw-description-box p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: #444;
+            font-style: italic;
+        }
+
+        /* Tag Styling */
+        .pw-specs-label { font-size: 11px; font-weight: 700; color: #999; text-transform: uppercase; margin-bottom: 12px; }
         
         .pw-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 30px; }
-        .pw-tag { background: #f1f1f1; color: #555; font-size: 0.7rem; padding: 5px 12px; border-radius: 6px; font-weight: 600; }
+        .pw-tag { 
+            background: #F0F2F2; 
+            color: var(--pw-text-light); 
+            font-size: 11px; 
+            padding: 6px 12px; 
+            border-radius: 8px; 
+            font-weight: 600;
+            border: 1px solid #D5D9D9;
+        }
 
+        /* Footer & Price */
         .pw-footer {
             margin-top: auto;
             display: flex;
             align-items: center;
             justify-content: space-between;
             border-top: 1px solid #f0f0f0;
-            padding-top: 20px;
+            padding-top: 25px;
         }
 
-        .pw-price-value { font-size: 1.4rem; font-weight: 800; color: #27ae60; }
+        .pw-price-label { font-size: 11px; color: #777; display: block; }
+        .pw-price-value { font-size: 1.6rem; font-weight: 800; color: #B12704; }
 
         .pw-cta-button {
-            background-color: var(--dark-bg);
-            color: white;
+            background-color: var(--pw-orange);
+            color: #000;
             text-decoration: none;
-            padding: 12px 20px;
-            border-radius: 12px;
-            font-weight: 600;
+            padding: 14px 24px;
+            border-radius: 100px;
+            font-weight: 700;
             font-size: 0.9rem;
-            transition: background 0.2s;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 14px rgba(255, 153, 0, 0.3);
         }
 
-        .pw-cta-button:hover { background-color: #37475a; }
+        .pw-cta-button:hover {
+            background-color: #F7CA00;
+            transform: scale(1.05);
+        }
+
+        /* Loading Animation */
+        #loader { text-align: center; font-weight: 600; color: #777; padding: 50px; }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 2.5rem; }
+            .pw-grid-container { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>PickWorthy</h1>
-        <p>Expertly handpicked products from trusted brands.</p>
+        <h1>Pick<span>Worthy</span></h1>
+        <p>We research the best gadgets so you don't have to. Handpicked quality from brands you trust.</p>
     </header>
 
-    <div id="product-container" class="pw-grid-container">
-        </div>
+    <div id="loader">Discovering the best picks for you...</div>
+    <div id="product-container" class="pw-grid-container"></div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+    
     <script>
-        // PASTE YOUR PUBLISHED GOOGLE SHEET CSV LINK BELOW
-        const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQnpI0HSMVQnTg4bZpewuom-L-ga5wN8EpyBBe4Omepl_11zHT-4iX5sWAqC14kfFWXoQCEVnJm6Bls/pub?output=csv';
+        // REPLACE THIS with your Published Google Sheet CSV Link
+        const SHEET_URL = 'YOUR_PUBLISHED_CSV_LINK_HERE';
 
         function loadProducts() {
             Papa.parse(SHEET_URL, {
                 download: true,
                 header: true,
                 complete: function(results) {
+                    document.getElementById('loader').style.display = 'none';
                     const container = document.getElementById('product-container');
+                    
                     results.data.forEach(product => {
                         if (!product['Product Name']) return;
 
-                        // Create spec tags from the comma-separated string
+                        // Create clean tags from comma-separated string
                         const specs = product['Important Features'].split(',').map(s => 
                             `<span class="pw-tag">${s.trim()}</span>`
                         ).join('');
 
                         container.innerHTML += `
                             <div class="pw-card">
-                                <div class="pw-badge">PickWorthy</div>
+                                <div class="pw-badge">Top Selection</div>
                                 <div class="pw-header">
                                     <span class="pw-brand">${product['Brand']}</span>
                                     <h2 class="pw-product-name">${product['Product Name']}</h2>
                                 </div>
                                 <div class="pw-key-feature">★ ${product['Key Feature']}</div>
                                 <div class="pw-description-box">
-                                    <strong>Why it's PickWorthy:</strong> ${product["Why it's PickWorthy"]}
+                                    <h4>Why it's PickWorthy</h4>
+                                    <p>${product["Why it's PickWorthy"]}</p>
                                 </div>
                                 <div class="pw-specs">
-                                    <p class="pw-specs-label">Specs</p>
+                                    <p class="pw-specs-label">Key Specifications</p>
                                     <div class="pw-tags">${specs}</div>
                                 </div>
                                 <div class="pw-footer">
-                                    <span class="pw-price-value">${product['Price (INR approx)']}</span>
+                                    <div>
+                                        <span class="pw-price-label">Check Price</span>
+                                        <span class="pw-price-value">${product['Price (INR approx)']}</span>
+                                    </div>
                                     <a href="${product['Affiliate Link']}" class="pw-cta-button" target="_blank">View on Amazon</a>
                                 </div>
                             </div>
