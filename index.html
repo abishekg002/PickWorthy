@@ -1,55 +1,190 @@
-<div id="product-container" class="pw-grid-container">
-    </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PickWorthy | Best Budget Action Cameras</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --accent-color: #ffcc00;
+            --dark-bg: #232f3e;
+            --text-main: #1a1a1a;
+            --text-muted: #666;
+        }
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 40px 20px;
+            color: var(--text-main);
+        }
 
-<script>
-    const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQnpI0HSMVQnTg4bZpewuom-L-ga5wN8EpyBBe4Omepl_11zHT-4iX5sWAqC14kfFWXoQCEVnJm6Bls/pub?output=csv';
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
 
-    function loadProducts() {
-        Papa.parse(SHEET_URL, {
-            download: true,
-            header: true,
-            complete: function(results) {
-                const container = document.getElementById('product-container');
-                const data = results.data;
+        header h1 { font-weight: 800; font-size: 2.5rem; margin-bottom: 10px; }
+        header p { color: var(--text-muted); font-size: 1.1rem; }
 
-                data.forEach(product => {
-                    // Safety check to ensure the row isn't empty
-                    if (!product['Product Name']) return;
+        .pw-grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-                    const card = `
-                        <div class="pw-card">
-                            <div class="pw-badge">PickWorthy Choice</div>
-                            <div class="pw-header">
-                                <span class="pw-brand">${product['Brand']}</span>
-                                <h2 class="pw-product-name">${product['Product Name']}</h2>
-                            </div>
-                            <div class="pw-key-feature">
-                                <strong>Key Feature:</strong> ${product['Key Feature']}
-                            </div>
-                            <div class="pw-description-box">
-                                <p><strong>Why it's PickWorthy:</strong> ${product["Why it's PickWorthy"]}</p>
-                            </div>
-                            <div class="pw-specs">
-                                <p class="pw-specs-label">Important Features:</p>
-                                <p class="pw-tag">${product['Important Features']}</p>
-                            </div>
-                            <div class="pw-footer">
-                                <div class="pw-price-area">
-                                    <span class="pw-price-label">Approx Price</span>
-                                    <span class="pw-price-value">${product['Price (INR approx)']}</span>
+        .pw-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 30px;
+            position: relative;
+            border: 1px solid #eaeaea;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .pw-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .pw-badge {
+            position: absolute;
+            top: -12px;
+            right: 25px;
+            background: var(--accent-color);
+            color: #000;
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 5px 15px;
+            border-radius: 50px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 10px rgba(255, 204, 0, 0.3);
+        }
+
+        .pw-brand {
+            color: var(--primary-color);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .pw-product-name { margin: 8px 0 15px 0; font-size: 1.5rem; }
+
+        .pw-key-feature {
+            background: #f0f7ff;
+            color: #0056b3;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .pw-description-box {
+            background: #fffdf5;
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #444;
+        }
+
+        .pw-specs-label { font-size: 0.75rem; font-weight: 800; color: #aaa; text-transform: uppercase; margin-bottom: 10px; }
+        
+        .pw-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 30px; }
+        .pw-tag { background: #f1f1f1; color: #555; font-size: 0.7rem; padding: 5px 12px; border-radius: 6px; font-weight: 600; }
+
+        .pw-footer {
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid #f0f0f0;
+            padding-top: 20px;
+        }
+
+        .pw-price-value { font-size: 1.4rem; font-weight: 800; color: #27ae60; }
+
+        .pw-cta-button {
+            background-color: var(--dark-bg);
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+        }
+
+        .pw-cta-button:hover { background-color: #37475a; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>PickWorthy</h1>
+        <p>Expertly handpicked products from trusted brands.</p>
+    </header>
+
+    <div id="product-container" class="pw-grid-container">
+        </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+    <script>
+        // PASTE YOUR PUBLISHED GOOGLE SHEET CSV LINK BELOW
+        const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQnpI0HSMVQnTg4bZpewuom-L-ga5wN8EpyBBe4Omepl_11zHT-4iX5sWAqC14kfFWXoQCEVnJm6Bls/pub?output=csv';
+
+        function loadProducts() {
+            Papa.parse(SHEET_URL, {
+                download: true,
+                header: true,
+                complete: function(results) {
+                    const container = document.getElementById('product-container');
+                    results.data.forEach(product => {
+                        if (!product['Product Name']) return;
+
+                        // Create spec tags from the comma-separated string
+                        const specs = product['Important Features'].split(',').map(s => 
+                            `<span class="pw-tag">${s.trim()}</span>`
+                        ).join('');
+
+                        container.innerHTML += `
+                            <div class="pw-card">
+                                <div class="pw-badge">PickWorthy</div>
+                                <div class="pw-header">
+                                    <span class="pw-brand">${product['Brand']}</span>
+                                    <h2 class="pw-product-name">${product['Product Name']}</h2>
                                 </div>
-                                <a href="${product['Affiliate Link']}" class="pw-cta-button" target="_blank">Check on Amazon</a>
+                                <div class="pw-key-feature">★ ${product['Key Feature']}</div>
+                                <div class="pw-description-box">
+                                    <strong>Why it's PickWorthy:</strong> ${product["Why it's PickWorthy"]}
+                                </div>
+                                <div class="pw-specs">
+                                    <p class="pw-specs-label">Specs</p>
+                                    <div class="pw-tags">${specs}</div>
+                                </div>
+                                <div class="pw-footer">
+                                    <span class="pw-price-value">${product['Price (INR approx)']}</span>
+                                    <a href="${product['Affiliate Link']}" class="pw-cta-button" target="_blank">View on Amazon</a>
+                                </div>
                             </div>
-                        </div>
-                    `;
-                    container.innerHTML += card;
-                });
-            }
-        });
-    }
-
-    loadProducts();
-
-</script>
+                        `;
+                    });
+                }
+            });
+        }
+        window.onload = loadProducts;
+    </script>
+</body>
+</html>
